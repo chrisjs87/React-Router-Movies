@@ -6,6 +6,7 @@ import SavedList from './Movies/SavedList';
 import { Route, Switch } from 'react-router-dom'
 //import components needed for the different routes
 import MovieList from './Movies/MovieList'
+import Movie from './Movies/Movie'
 
 export default function App () {
   const [saved, setSaved] = useState([]); // Stretch: the ids of "saved" movies
@@ -39,9 +40,14 @@ console.log(movieList) //we know this is working correctly
   return (
     <div>
       <SavedList list={[ /* This is stretch */]} />
-      <Route path='/'>
-        <MovieList movies={movieList} ></MovieList>
-      </Route>  
+      <Route exact path='/'>
+        <MovieList movies={movieList} />
+      </Route> 
+      <Route path={`/movies/:id`} >
+        <Movie movies={movieList} />
+      </Route>
     </div>
   );
 }
+
+//dynamic :id added above
